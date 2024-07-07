@@ -52,10 +52,9 @@ class RIS_MISO(object):
 
         self.H_1 = np.random.normal(0, np.sqrt(0.5), (self.L, self.M)) + 1j * np.random.normal(0, np.sqrt(0.5),
                                                                                                (self.L, self.M))
-        # self.H_2 = np.random.normal(0, np.sqrt(0.5), (self.L, self.K)) + 1j * np.random.normal(0, np.sqrt(0.5),
-        #                                                                                        (self.L, self.K))
-        self.h_t = np.random.normal(0, np.sqrt(0.5),(self.L, self.K_r)) + np.random.normal(0, np.sqrt(0.5),(self.L, self.K_r)) * 1j
-        self.h_r = np.random.normal(0, np.sqrt(0.5),(self.L, self.K_t)) + np.random.normal(0, np.sqrt(0.5),(self.L, self.K_t)) * 1j
+
+        self.h_t = np.random.normal(0, np.sqrt(0.5), (self.L, int(self.K_r))) + np.random.normal(0, np.sqrt(0.5), (self.L, int(self.K_r))) * 1j
+        self.h_r = np.random.normal(0, np.sqrt(0.5), (self.L, int(self.K_t))) + np.random.normal(0, np.sqrt(0.5), (self.L, int(self.K_t))) * 1j
 
         init_action_G = np.hstack((np.real(self.G.reshape(1, -1)), np.imag(self.G.reshape(1, -1))))
         init_action_Phi = np.hstack((np.real(np.diag(self.Phi)).reshape(1, -1), np.imag(np.diag(self.Phi)).reshape(1, -1)))
