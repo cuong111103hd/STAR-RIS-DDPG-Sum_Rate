@@ -85,8 +85,8 @@ class RIS_MISO(object):
     def _compute_reward(self, Phi):
 
         diag_Phi = np.diag(Phi)
-        diag_Phi1 = np.zero((self.L, 1))
-        diag_Phi2 = np.zero((self.L, 1))
+        diag_Phi1 = np.zeros((self.L, 1))
+        diag_Phi2 = np.zeros((self.L, 1))
         diag_Phi1[:self.L_t] = diag_Phi[:self.L_t]
         diag_Phi2[self.L_t:] = diag_Phi[self.L_t:]
 
