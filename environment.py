@@ -27,7 +27,7 @@ class RIS_MISO(object):
 
         power_size = 2 * self.K
 
-        channel_size = 2 * (self.L * self.M + self.L * self.K * 2)
+        channel_size = 2 * (self.L * self.M + self.L * self.K)
 
         self.action_dim = 2 * self.M * self.K + 2 * self.L
         self.state_dim = power_size + channel_size + self.action_dim
