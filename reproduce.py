@@ -40,7 +40,7 @@ def get_results(figure_num, results_dir):
         legend = []
         fig_dir = f"{results_dir}/sum_rate_power"
 
-        values = [8, 32]
+        values = [4]
 
         for val in values:
             results.append(np.load(f"{fig_dir}/{val}.npy").squeeze())
@@ -115,13 +115,14 @@ def get_results(figure_num, results_dir):
         results = []
         legend = []
 
-        fig_dir = f"{results_dir}/rsi_elements"
+        fig_dir = f"{results_dir}/ris_elements"
 
-        rsi_N = [30, 20, 10, 4]
+        rsi_N = [ 4]
 
         for N in rsi_N:
             reward = np.load(f"{fig_dir}/{N}.npy").squeeze()
-            avg_reward = compute_avg_reward(reward)
+            first_row = reward[0]
+            avg_reward = compute_avg_reward(first_row)
             results.append(avg_reward)
 
             legend.append(f"M = 4, N = {N}, K = 4")
