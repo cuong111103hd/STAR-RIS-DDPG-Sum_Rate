@@ -21,7 +21,7 @@ class RIS_MISO(object):
 
         self.channel_est_error = channel_est_error
 
-        assert self.M == self.K
+        # assert self.M == self.K
 
         self.awgn_var = AWGN_var
         self.channel_noise_var = channel_noise_var
@@ -51,7 +51,6 @@ class RIS_MISO(object):
         self.episode_t = 0
 
         self.H_1 = np.random.normal(0, np.sqrt(0.5), (self.L, self.M)) + 1j * np.random.normal(0, np.sqrt(0.5), (self.L, self.M))
-
         self.h_t = np.random.normal(0, np.sqrt(0.5), (self.L, self.K_r)) + np.random.normal(0, np.sqrt(0.5), (self.L, self.K_r)) * 1j
         self.h_r = np.random.normal(0, np.sqrt(0.5), (self.L, self.K_t)) + np.random.normal(0, np.sqrt(0.5), (self.L, self.K_t)) * 1j
 

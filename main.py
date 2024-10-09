@@ -108,7 +108,6 @@ if __name__ == "__main__":
     for eps in range(int(args.num_eps)):
         state, done = env.reset(), False
         episode_reward = 0
-        episode_num = 0
         episode_time_steps = 0
 
         state = whiten(state)
@@ -138,26 +137,26 @@ if __name__ == "__main__":
             # Train the agent
             agent.update_parameters(replay_buffer, args.batch_size)
 
-            print(f"Time step: {t + 1} Episode Num: {episode_num + 1} Reward: {reward:.3f}")
+            print(f"Time step: {t + 1} Episode Num: {eps + 1} Reward: {reward:.3f}")
 
             eps_rewards.append(reward)
 
             episode_time_steps += 1
 
             if done:
-                print(f"\nTotal T: {t + 1} Episode Num: {episode_num + 1} Episode T: {episode_time_steps} Max. Reward: {max_reward:.3f}\n")
+                print(f"\nTotal T: {t + 1} Episode Num: {eps + 1} Episode T: {episode_time_steps} Max. Reward: {max_reward:.3f}\n")
 
                 # Reset the environment
                 state, done = env.reset(), False
                 episode_reward = 0
                 episode_time_steps = 0
-                episode_num += 1
 
                 state = whiten(state)
 
                 instant_rewards.append(eps_rewards)
 
-                np.save(f"./Learning Curves/{args.experiment_type}/{file_name}_episode_{episode_num + 1}", instant_rewards)
+                np.save(f"./Learning Curves/{args.experiment_type}/{file_name}_episode_{eps + 1}", instant_rewards)
+                np.save(f"./Learning Curves/{args.experiment_type}/{file_name}", instant_rewards)
 
     if args.save_model:
         agent.save(f"./Models/{file_name}")

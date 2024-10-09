@@ -33,8 +33,8 @@ class Actor(nn.Module):
 
     def compute_power(self, a):
         # Normalize the power
-        G_real = a[:, :self.M ** 2].cpu().data.numpy()
-        G_imag = a[:, self.M ** 2:2 * self.M ** 2].cpu().data.numpy()
+        G_real = a[:, :self.M * self.K].cpu().data.numpy()
+        G_imag = a[:, self.M * self.K :2 * self.M * self.K ].cpu().data.numpy()
 
         G = G_real.reshape(G_real.shape[0], self.M, self.K) + 1j * G_imag.reshape(G_imag.shape[0], self.M, self.K)
 
@@ -62,7 +62,7 @@ class Actor(nn.Module):
         a = torch.tanh(self.l3(a))
 
         # Normalize the transmission power and phase matrix
-        current_power_t = self.compute_power(a.detach()).expand(-1, 2 * self.M ** 2) / np.sqrt(self.power_t)
+        current_power_t = self.compute_power(a.detach()).expand(-1, 2 * self.M * self.K) / np.sqrt(self.power_t)
 
         real_normal, imag_normal = self.compute_phase(a.detach())
 
