@@ -20,7 +20,8 @@ def compute_avg_reward(reward):
     avg_reward = np.zeros_like(reward)
 
     for i in range(len(reward)):
-        avg_reward[i] = np.sum(reward[:(i + 1)]) / (i + 1)
+        # avg_reward[i] = np.sum(reward[:(i + 1)]) / (i + 1)
+        avg_reward = np.mean(reward,axis = 0)
 
     return avg_reward
 
@@ -40,7 +41,7 @@ def get_results(figure_num, results_dir):
         legend = []
         fig_dir = f"{results_dir}/sum_rate_power"
 
-        values = [4]
+        values = [8, 32]
 
         for val in values:
             results.append(np.load(f"{fig_dir}/{val}.npy").squeeze())
@@ -115,14 +116,13 @@ def get_results(figure_num, results_dir):
         results = []
         legend = []
 
-        fig_dir = f"{results_dir}/ris_elements"
+        fig_dir = f"{results_dir}/rsi_elements"
 
-        rsi_N = [ 4]
+        rsi_N = [4]
 
         for N in rsi_N:
             reward = np.load(f"{fig_dir}/{N}.npy").squeeze()
-            first_row = reward[0]
-            avg_reward = compute_avg_reward(first_row)
+            avg_reward = compute_avg_reward(reward)
             results.append(avg_reward)
 
             legend.append(f"M = 4, N = {N}, K = 4")
