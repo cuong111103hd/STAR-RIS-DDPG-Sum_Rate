@@ -17,11 +17,11 @@ TURQUOIS = '#17becf'
 
 
 def compute_avg_reward(reward):
-    avg_reward = np.zeros_like(reward)
-
-    for i in range(len(reward)):
-        # avg_reward[i] = np.sum(reward[:(i + 1)]) / (i + 1)
-        avg_reward = np.mean(reward,axis = 0)
+    # avg_reward = np.zeros_like(reward)
+    #
+    # for i in range(len(reward)):
+    #     avg_reward[i] = np.sum(reward[:(i + 1)]) / (i + 1)
+    avg_reward = np.mean(reward, axis=0)
 
     return avg_reward
 
