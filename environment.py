@@ -36,7 +36,13 @@ class RIS_MISO(object):
         self.H_2 = None
         self.h_t = None
         self.h_r = None
-        self.G = np.eye(self.M, dtype=complex)
+        # self.G = np.eye(self.M, dtype=complex)
+
+        self.G = np.random.randn(self.M, self.K) + 1j * np.random.randn(self.M, self.K)
+        trace_GGH = np.trace(self.G @ (self.G.conj().T))
+        scaling_factor = np.sqrt(self.K / trace_GGH)
+        self.G *= scaling_factor
+
         self.Phi = np.eye(self.L, dtype=complex)
 
         self.state = None

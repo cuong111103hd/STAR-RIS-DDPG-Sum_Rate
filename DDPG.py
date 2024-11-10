@@ -62,7 +62,7 @@ class Actor(nn.Module):
         a = torch.tanh(self.l3(a))
 
         # Normalize the transmission power and phase matrix
-        current_power_t = self.compute_power(a.detach()).expand(-1, 2 * self.M * self.K) / np.sqrt(self.power_t)
+        current_power_t = self.compute_power(a.detach()).expand(-1, 2 * self.M ** 2) / np.sqrt(self.power_t)
 
         real_normal, imag_normal = self.compute_phase(a.detach())
 
