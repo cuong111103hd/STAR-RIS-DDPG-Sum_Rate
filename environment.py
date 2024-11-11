@@ -14,10 +14,10 @@ class RIS_MISO(object):
         self.K = num_users
 
         # Ensure integer division
-        self.L_t = int(self.L // 2)
-        self.L_r = int(self.L // 2)
-        self.K_t = int(self.K // 2)
-        self.K_r = int(self.K // 2)
+        self.L_t = self.L // 2
+        self.L_r = self.L // 2
+        self.K_t = self.K // 2
+        self.K_r = self.K // 2
 
         self.channel_est_error = channel_est_error
 
